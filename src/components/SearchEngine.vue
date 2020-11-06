@@ -1,6 +1,6 @@
 <template>
-  <div class="search-engine">
-  </div>
+  <label for="input-live">Title</label>
+
 </template>
 
 <script>
