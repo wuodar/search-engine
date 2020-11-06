@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <b-container>
     <h1>Baza filmów</h1>
     <MoviesTable></MoviesTable>
-  </div>
+  </b-container>
 </template>
 
 <script>
