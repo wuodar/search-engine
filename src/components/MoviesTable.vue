@@ -1,11 +1,12 @@
 <template>
-  <div class="movies-table">
+  <div class="container">
+    <p>siusiak</p>
   </div>
 </template>
 
 <script>
 export default {
-name: "movies_table"
+  name: "MoviesTable"
 }
 </script>
 
