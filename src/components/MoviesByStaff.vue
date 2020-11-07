@@ -1,5 +1,5 @@
 <template>
-  <div class="movies-by-staff">
+  <div>
   </div>
 </template>
 
