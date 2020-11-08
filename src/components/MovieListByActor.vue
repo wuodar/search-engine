@@ -16,16 +16,17 @@
 
 <script>
 import movies from '../assets/movies/movies.json'
+let _ = require('underscore');
 
 export default{
   data(){
-    let _ = require('underscore');
-    let actorList = _.uniq(_.flatten(_.map(movies, function (movie){return movie.cast})))
-    let moviesByCast = _.map(actorList, function (actor){
-      return {actorName: actor, movies: _.filter(movies, function (movie){
+    let moviesList = _.first(movies, 100)
+    let actorList = _.uniq(_.flatten(_.map(moviesList, function (movie){return movie.cast})))
+    let moviesByCast = _.first(_.map(actorList, function (actor){
+      return {actorName: actor, movies: _.filter(moviesList, function (movie){
           return _.contains(movie.cast, actor)
         })}
-    })
+    }), 100)
     return {
       movies,
       actorList,

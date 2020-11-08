@@ -17,12 +17,13 @@
 <script>
 import movies from '../assets/movies/movies.json'
 import genres from '../assets/movies/genres.json'
+import {_} from 'vue-underscore'
 
 export default{
   data(){
-    let _ = require('underscore');
+    let moviesList = _.first(movies, 100)
     let moviesByGenre = _.map(genres, function (genre){
-      return {genre: genre, movies: _.filter(movies, function (movie){
+      return {genre: genre, movies: _.filter(moviesList, function (movie){
         return _.contains(movie.genres, genre)
       })}
     })
