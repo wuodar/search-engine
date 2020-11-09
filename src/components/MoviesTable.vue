@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table small :fields="fields" :items="filtredMovieList" responsive="sm">
+    <b-table small :fields="fields" :items="items" responsive="sm">
       <template #cell(title)="data">
         {{data.item.title}}
       </template>
@@ -61,11 +61,9 @@ export default {
           if(wincent.productionTo !== "" && movie.year > wincent.productionTo) {
             return false;
           }
-          if(wincent.cast !== "" && !_.contains(movie.cast, wincent.cast)) {
-            return false;
-          }
+          return !(wincent.cast !== "" && !_.contains(movie.cast, wincent.cast));
 
-          return true;
+
         });
       } else {
         return [];
@@ -75,6 +73,8 @@ export default {
   mounted() {
     this.$root.$on("searchMovie", (form) => {
       this.filtredMovieList = this.doTheSearch(form);
+      this.iterator = 0;
+      this.addItem();
     });
   },
 }
