@@ -50,7 +50,7 @@
           placeholder="Imię i nazwisko"
       ></b-form-input>
     </b-form-group>
-      <b-button variant="info col-sm-12" type="button">Szukaj</b-button>
+      <b-button variant="info col-sm-12" type="button" v-on:click="searchMovie()">Szukaj</b-button>
   </b-form>
 </template>
 
@@ -69,6 +69,9 @@ name: "search-engine",
     }
   },
     methods: {
+      searchMovie() {
+        this.$root.$emit('searchMovie', this.form);
+      }
     }
   }
 </script>

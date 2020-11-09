@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table small :fields="fields" :items="items" responsive="sm">
+    <b-table small :fields="fields" :items="filtredMovieList" responsive="sm">
       <template #cell(title)="data">
         {{data.item.title}}
       </template>
@@ -30,6 +30,7 @@ export default {
   name: "MoviesTable",
   data() {
     let moviesList = _.first(movies, 10)
+    let filtredMovieList = [];
     return {
       fields: [
         'title',
@@ -38,16 +39,44 @@ export default {
         'genres'
       ],
       iterator: 1,
-      movies: movies,
+      movies,
+      filtredMovieList,
       items: moviesList
     }
   },
   methods:{
     addItem(){
       this.iterator += 1
-      this.items = _.first(this.movies, 10*this.iterator)
+      this.items = _.first(this.filtredMovieList, 10*this.iterator)
+    },
+    doTheSearch (wincent) {
+      if(wincent) {
+        return _.filter(movies, function (movie) {
+          if(wincent.title !== "" && !movie.title.includes(wincent.title)) {
+            return false;
+          }
+          if(wincent.productionFrom !== "" && movie.year < wincent.productionFrom){
+            return false;
+          }
+          if(wincent.productionTo !== "" && movie.year > wincent.productionTo) {
+            return false;
+          }
+          if(wincent.cast !== "" && !_.contains(movie.cast, wincent.cast)) {
+            return false;
+          }
+
+          return true;
+        });
+      } else {
+        return [];
+      }
     }
-  }
+  },
+  mounted() {
+    this.$root.$on("searchMovie", (form) => {
+      this.filtredMovieList = this.doTheSearch(form);
+    });
+  },
 }
 </script>
 
