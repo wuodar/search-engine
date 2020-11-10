@@ -49,8 +49,11 @@ export default {
     },
     filterMovieList: function (form) {
       if(form) {
+        let normalizeString = (test) => {
+          return (_.isString(test)) ? test.toLowerCase().replace(/\s+/g, '') : test
+        };
         return _.filter(movies, function (movie) {
-          if(form.title !== "" && !(this.normalizeString(movie.title)).includes(this.normalizeString(form.title))) {
+          if(form.title !== "" && !(normalizeString(movie.title)).includes(normalizeString(form.title))) {
             return false;
           }
           if(form.productionFrom !== "" && movie.year < form.productionFrom){
@@ -64,9 +67,6 @@ export default {
       } else {
         return [];
       }
-    },
-    normalizeString: function(s){
-      return (_.isString(s)) ? s.toLowerCase().trim() : s;
     },
   },
   mounted() {
