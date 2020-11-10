@@ -30,7 +30,6 @@ export default {
   name: "MoviesTable",
   data() {
     let moviesList = _.first(movies, 10)
-    let filtredMovieList = [];
     return {
       fields: [
         'title',
@@ -39,8 +38,7 @@ export default {
         'genres'
       ],
       iterator: 1,
-      movies,
-      filtredMovieList,
+      filtredMovieList: movies,
       items: moviesList
     }
   },

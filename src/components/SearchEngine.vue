@@ -60,10 +60,10 @@ name: "search-engine",
   data() {
     return {
       form: {
-        title: '',
-        productionFrom: '',
-        productionTo: '',
-        cast: '',
+        title: "",
+        productionFrom: "",
+        productionTo: "",
+        cast: "",
       },
       show: true
     }
