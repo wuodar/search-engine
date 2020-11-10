@@ -69,7 +69,7 @@ name: "search-engine",
     }
   },
     methods: {
-      searchMovie() {
+      searchMovie: function () {
         this.$root.$emit('searchMovie', this.form);
       }
     }

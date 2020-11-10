@@ -43,14 +43,14 @@ export default {
     }
   },
   methods:{
-    addItem(){
+    addItem: function(){
       this.iterator += 1
       this.items = _.first(this.filtredMovieList, 10*this.iterator)
     },
-    filterMovieList (form) {
+    filterMovieList: function (form) {
       if(form) {
         return _.filter(movies, function (movie) {
-          if(form.title !== "" && !movie.title.includes(form.title)) {
+          if(form.title !== "" && !(this.normalizeString(movie.title)).includes(this.normalizeString(form.title))) {
             return false;
           }
           if(form.productionFrom !== "" && movie.year < form.productionFrom){
@@ -64,7 +64,10 @@ export default {
       } else {
         return [];
       }
-    }
+    },
+    normalizeString: function(s){
+      return (_.isString(s)) ? s.toLowerCase().trim() : s;
+    },
   },
   mounted() {
     this.$root.$on("searchMovie", (form) => {
