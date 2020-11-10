@@ -47,21 +47,19 @@ export default {
       this.iterator += 1
       this.items = _.first(this.filtredMovieList, 10*this.iterator)
     },
-    doTheSearch (wincent) {
-      if(wincent) {
+    filterMovieList (form) {
+      if(form) {
         return _.filter(movies, function (movie) {
-          if(wincent.title !== "" && !movie.title.includes(wincent.title)) {
+          if(form.title !== "" && !movie.title.includes(form.title)) {
             return false;
           }
-          if(wincent.productionFrom !== "" && movie.year < wincent.productionFrom){
+          if(form.productionFrom !== "" && movie.year < form.productionFrom){
             return false;
           }
-          if(wincent.productionTo !== "" && movie.year > wincent.productionTo) {
+          if(form.productionTo !== "" && movie.year > form.productionTo) {
             return false;
           }
-          return !(wincent.cast !== "" && !_.contains(movie.cast, wincent.cast));
-
-
+          return !(form.cast !== "" && !_.contains(movie.cast, form.cast));
         });
       } else {
         return [];
@@ -70,7 +68,7 @@ export default {
   },
   mounted() {
     this.$root.$on("searchMovie", (form) => {
-      this.filtredMovieList = this.doTheSearch(form);
+      this.filtredMovieList = this.filterMovieList(form);
       this.iterator = 0;
       this.addItem();
     });
