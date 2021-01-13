@@ -1,24 +1,25 @@
 # search-engine
 
+## Description
+Simple web-app displaying movies in the table. You can filter them by querying by movie or actors. Made to learn vue.js with bootstrap and underscore.
+
 ## Project setup
 ```
-npm install
+> git clone https://github.com/wuodar/search-engine
+> npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+> npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+> npm run build
 ```
 
 ### Lints and fixes files
 ```
-npm run lint
+> npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
