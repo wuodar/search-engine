@@ -5,7 +5,7 @@ Simple web-app displaying movies in the table. You can filter them by querying b
 
 ## Project setup
 ```
-> git clone https://github.com/wuodar/search-engine
+> git clone https://github.com/wuodar/search-engine && cd search-engine
 > npm install
 ```
 
